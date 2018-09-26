@@ -1,10 +1,9 @@
+import java.io.*;
+//import java.net.*;
 
 
 public class Iperfer {
-	
-	static String ERROR = "Error: missing or additional arguments";
-	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		String hostname;
 		int port;
@@ -25,7 +24,7 @@ public class Iperfer {
 				client.start();
 			}
 			else {
-				System.out.println(ERROR);
+				System.out.println("Error: missing or additional arguments");
 				System.exit(1);
 			}
 		}
@@ -38,15 +37,14 @@ public class Iperfer {
 				server.start();
 			}
 			else {
-				System.out.println(ERROR);
+				System.out.println("Error: missing or additional arguments");
 				System.exit(1);
 			}
 		}
 		else {
-			System.out.println(ERROR);
+			System.out.println("Error: missing or additional arguments");
 			System.exit(1);
 		}
 	}
-	
+	}
 
-}
