@@ -26,7 +26,8 @@ public class Client {
 			System.exit(1);
 		}
 		Socket client = null;
-		double endTime = time * 1000000000;
+		long endTime = Integer.toUnsignedLong(time) * 1000000000;
+		
 		
 		try {
 			client = new Socket(this.name, this.port);
@@ -48,7 +49,7 @@ public class Client {
 			}
 			kiloBytes++;
 		}
-		
+		System.out.println("time elapsed: " + (System.nanoTime() - start)/1000000000);
 		// if done sending the data close the socket and output
 		
 		try {
@@ -57,7 +58,7 @@ public class Client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("time elapsed: " + time);
+		//System.out.println("time elapsed: " + time);
 		double kbs = kiloBytes/time;
 		System.out.println("sent=" + kiloBytes + " KB rate = " + kbs/1000 + " Mbps");
 		
