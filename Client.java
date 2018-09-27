@@ -57,6 +57,7 @@ public class Client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("time elapsed: " + time);
 		double kbs = kiloBytes/time;
 		System.out.println("sent=" + kiloBytes + " KB rate = " + kbs/1000 + " Mbps");
 		
