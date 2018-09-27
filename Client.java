@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.text.DecimalFormat;
 
 public class Client {
 	
@@ -8,7 +9,7 @@ public class Client {
 	int time;
 	OutputStream output = null;
 	byte[] outputBytes = new byte[1000];
-	int kiloBytes = 0;
+	long kiloBytes = 0;
 	
 	Client(String name, int port, int time){
 		this.name = name;
@@ -49,7 +50,7 @@ public class Client {
 			}
 			kiloBytes++;
 		}
-		System.out.println("time elapsed: " + (System.nanoTime() - start)/1000000000);
+		//System.out.println("time elapsed: " + (System.nanoTime() - start)/1000000000);
 		// if done sending the data close the socket and output
 		
 		try {
@@ -60,7 +61,8 @@ public class Client {
 		}
 		//System.out.println("time elapsed: " + time);
 		double kbs = kiloBytes/time;
-		System.out.println("sent=" + kiloBytes + " KB rate = " + kbs/1000 + " Mbps");
+		DecimalFormat numberformat = new DecimalFormat("#.000");
+		System.out.println("sent=" + kiloBytes + " KB rate=" + numberformat.format(kbs/1000) + " Mbps");
 		
 	}
 }

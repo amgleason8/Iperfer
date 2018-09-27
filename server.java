@@ -1,4 +1,5 @@
 import java.net.*;
+import java.text.DecimalFormat;
 import java.io.*;
 
 public class server {
@@ -21,7 +22,7 @@ public class server {
 		Socket server = null;
 		byte[] b = new byte[1000];
 		int input = 0;
-		int count = 0;
+		long count = 0;
 		
 		try {
 			serve = new ServerSocket(this.port);
@@ -32,7 +33,7 @@ public class server {
 			System.exit(1);
 		}
 		
-		double time = System.nanoTime();
+		long time = System.nanoTime();
 		while(input > -1) {
 			try {
 				input = server.getInputStream().read(b);
@@ -59,11 +60,11 @@ public class server {
 		count = count/1000;
 		
 		// get time back in seconds
-		timeElapsed = timeElapsed * (0.000000001);
+		timeElapsed = timeElapsed / 1000000000.000;
 //		System.out.println("time elapsed: " + timeElapsed);
 		double kbs = count/timeElapsed;
-		
-		System.out.println("received=" + count + " KB rate=" + kbs/1000 + " Mbps");
+		DecimalFormat numberformat = new DecimalFormat("#.000");
+		System.out.println("received=" + count + " KB rate=" + numberformat.format(kbs/1000) + " Mbps");
 	}
 
 }  
